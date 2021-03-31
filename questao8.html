@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 8</title>
+</head>
+
+<body>
+
+    <!--
+        QUESTÃO 8:
+
+        O código de César é uma das mais simples e conhecidas técnicas de criptografia. É um tipo
+        de substituição na qual cada letra do texto é substituída por outra, que se apresentando
+        alfabeto abaixo dela um número fixo de vezes. Por exemplo, com uma troca de três posições,
+        ‘A’ seria substituído por ‘D’, ‘B’ se tornaria ‘E’, e assim por diante. Implemente um
+        programa que faça uso desse Código de César (3 posições), entre com uma string e retorne
+        a string codificada. A e C
+    -->
+
+    <script>
+        var values = new Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+        var pular = 3;
+
+        function criptografia() {
+
+            var retorno = "";
+
+            for (var i = 0; i < nome.length; i++) {
+
+                var posicao = nome.charCodeAt(i) - 64;
+                var nova_posicao = (posicao + pular) % 26;
+                retorno = retorno + values[nova_posicao - 1];
+
+            }
+
+            alert("Criptografia: " + retorno);
+
+        }
+
+        criptografia(nome = (prompt("Digite um nome ou frase: ").toUpperCase()));
+    </script>
+
+
+</body>
+
+</html>

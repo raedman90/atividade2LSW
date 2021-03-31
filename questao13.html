@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 13</title>
+</head>
+
+<body>
+
+    <!--
+        QUESTÃO 13:
+        
+        De acordo com o array abaixo. Resolva as seguintes questões:
+
+        a)  Utilizando o método filter(), gere um novo array contendo os candidatos com nota
+            acima de 7.0. E Imprima o resultado em ordem alfabeto.
+
+        b)  Sabendo que o concurso somente 3 primeiros são Aprovados, Homologado com nota
+            acima de 7.0 e Desclassificado abaixo de 7.0. Portanto, utilizando o map(), gere um
+            novo array contendo objetos com as propriedades (candidato e situação). Na
+            propriedade candidato deve conter os nomes de todos os candidatos e na propriedade
+            situação deve conter os valores (Aprovado, homologado ou desclassificado) de
+            acordo com a nota de cada um. Depois imprima o array gerado.
+
+        c)  Utilizando a função reduce(), que retorna a média geral do concurso do array
+            resultadoConcurso. Portanto, utilize uma função que calcula o valor da média no
+            método reduce().
+    -->
+
+    <script>
+        let resultadoConcurso = [{
+            candidato: "Renata Soares",
+            nota: 7.8,
+            idade: 29
+        }, {
+            candidato: "Marcos Teixeira",
+            nota: 7.8,
+            idade: 26
+        }, {
+            candidato: "Priscila Gomes",
+            nota: 8.0,
+            idade: 30
+        }, {
+            candidato: "João Oliveira",
+            nota: 8.0,
+            idade: 27
+        }, {
+            candidato: "Adriana Telles",
+            nota: 7.4,
+            idade: 28
+        }, {
+            candidato: "Fábio Queiroga",
+            nota: 6.4,
+            idade: 20
+        }, {
+            candidato: "Felipe Soares",
+            nota: 5.0,
+            idade: 18
+        }, {
+            candidato: "José Dantas",
+            nota: 0.0,
+            idade: 21
+        }];
+
+        function respostaA() {
+
+            resultadoConcurso.sort(function(candidatoA, candidatoB) {
+                if (candidatoA.candidato < candidatoB.candidato) {
+                    return -1;
+
+                } else {
+                    return true;
+                }
+            });
+
+            var aprovados = resultadoConcurso.filter(candidato => candidato.nota > 7.0);
+            console.table(aprovados);
+        }
+
+        respostaA();
+
+        function respostaB() {
+
+            var aux = 0;
+
+            resultadoConcurso.sort(function(candidatoA, candidatoB) {
+
+                if (candidatoA.nota > candidatoB.nota) {
+                    return -1;
+                } else {
+                    return true;
+                }
+
+            });
+
+            var resultado = resultadoConcurso.map(item => {
+                const container = {};
+
+                container.Candidato = item.candidato;
+                container.Situacao = "HOMOLOGADO";
+
+                if (item.nota > 7.0 && aux < 3) {
+                    container.Situacao = "APROVADO";
+                    aux++;
+                }
+
+                if (item.nota < 7.0) {
+                    container.Situacao = "DESCLASSIFICADO";
+
+                }
+
+                return container;
+            });
+
+            console.table(resultado);
+        }
+
+        respostaB();
+
+        function respostaC() {
+
+            var media = resultadoConcurso.reduce(pegaMedia, 0);
+
+            function pegaMedia(media, candidato) {
+                return media + (candidato.nota) / resultadoConcurso.length;
+
+            }
+
+            console.log("Média: " + media);
+
+        }
+
+        respostaC();
+    </script>
+
+
+</body>
+
+</html>
